@@ -1,0 +1,17 @@
+{
+  "name": "cnm-project",
+  "version": "1.0.0",
+  "description": "Computer New Media Project which demonstrates visualization over census data",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "visualization"
+  ],
+  "author": "Pawan Singh <pawansingh9@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
