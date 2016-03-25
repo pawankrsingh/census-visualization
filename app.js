@@ -22,7 +22,7 @@ app.get('/counter', function (req, res) {
           results =int1.replace(/</,"&lt;");
       }
       //res.send(results);
-      res.send(JSON.stringify({ counter: results }))
+      res.send(JSON.stringify({ counter: results }));
     }
    else{ res.send(JSON.stringify({ counter: 343 }));}
   });
