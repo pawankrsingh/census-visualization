@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<style type="text/css">
+.highcharts-tooltip h3 {
+    margin: 0.3em 0;
+}
+		</style>
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+
+        chart: {
+            type: 'bubble',
+            plotBorderWidth: 1,
+            zoomType: 'xy'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        title: {
+            text: 'Air pollution versus Gross State Product'
+        },
+
+        subtitle: {
+            text: 'Source: <a href="http://www.euromonitor.com/">Euromonitor</a> and <a href="https://data.oecd.org/">OECD</a>'
+        },
+
+        xAxis: {
+            gridLineWidth: 1,
+            title: {
+                text: 'Gross state product'
+            },
+            labels: {
+                format: '{value} $ Millions'
+            }
+        },
+
+        yAxis: {
+            startOnTick: false,
+            endOnTick: false,
+            title: {
+                text: 'CO2 emissions'
+            },
+            labels: {
+                format: '{value} Tons'
+            },
+            maxPadding: 0.2
+        },
+
+        tooltip: {
+            useHTML: true,
+            headerFormat: '<table>',
+            pointFormat: '<tr><th colspan="2"><h3>{point.state}</h3></th></tr>' +
+                '<tr><th>GSP:</th><td>{point.x}$ Millions</td></tr>' +
+                '<tr><th>CO2 emission:</th><td>{point.y}T</td></tr>' +
+                '<tr><th>Population:</th><td>{point.z}</td></tr>',
+            footerFormat: '</table>',
+            followPointer: true
+        },
+
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+
+        series: [{
+            data: [
+                { x: 95, y: 95, z: 13.8, name: 'TX', state: 'Texas' },
+                { x: 86.5, y: 102.9, z: 14.7, name: 'DE', state: 'Delaware' },
+                { x: 80.8, y: 91.5, z: 15.8, name: 'Al', state: 'Alaska' },
+                { x: 80.4, y: 102.5, z: 12, name: 'NY', state: 'New York' },
+                { x: 80.3, y: 86.1, z: 11.8, name: 'FL', state: 'Florida' },
+                { x: 78.4, y: 70.1, z: 16.6, name: 'CA', state: 'California' },
+                { x: 74.2, y: 68.5, z: 14.5, name: 'WA', state: 'Washington' },
+                { x: 73.5, y: 83.1, z: 10, name: 'NM', state: 'New Mexico' },
+                { x: 71, y: 93.2, z: 24.7, name: 'Ok', state: 'Oklahoma' },
+                { x: 69.2, y: 57.6, z: 10.4, name: 'GE', state: 'Georgia' },
+                { x: 68.6, y: 20, z: 16, name: 'TN', state: 'Tenessee' },
+                { x: 65.5, y: 126.4, z: 35.3, name: 'RI', state: 'Rhode Island' },
+                { x: 65.4, y: 50.8, z: 28.5, name: 'AL', state: 'Alabama' },
+                { x: 63.4, y: 51.8, z: 15.4, name: 'MR', state: 'Maryland' },
+                { x: 64, y: 82.9, z: 31.3, name: 'NV', state: 'Nevada' }
+            ]
+        }]
+
+    });
+});
+		</script>
+	</head>
+	<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
+	</body>
+</html>
