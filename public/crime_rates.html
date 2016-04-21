@@ -40,11 +40,10 @@ ${demo.css}
             text: 'Gun ownership versus homicide rates'
         },
         subtitle: {
-            text: 'Source: '
+            text: 'Source: demographicdata.org'
         },
         xAxis: [{
-            categories: ['New York', 'Maryland', 'California', 'Texas', 'New Jersey', 'Washington',
-                'Rhode Island', 'Florida', 'Alabama', 'Georgia'],
+            categories: ["District of Columbia","Hawaii","New Jersey","Massachusetts","Rhode Island","Connecticut","New York","Illinois","California","Maryland","Florida","Delaware","New Hampshire","Arizona","Ohio","Washington","Nevada","Colorado","Pennsylvania","New Mexico","Virginia","Texas","Michigan","Nebraska","Indiana","Oregon","Georgia","Maine","North Carolina","Minnesota","Missouri","Vermont","Kansas","South Carolina","Iowa","Oklahoma","Tennessee","Utah","Louisiana","Wisconsin","Kentucky","North Dakota","Alabama","Arkansas","Idaho","Mississippi","West Virginia","South Dakota","Montana","Alaska","Wyoming"],
             crosshair: true
         }],
         yAxis: [{ // Primary yAxis
@@ -55,14 +54,14 @@ ${demo.css}
                 }
             },
             title: {
-                text: 'Homicides per year',
+                text: 'Homicides (per 100K)',
                 style: {
                     color: Highcharts.getOptions().colors[1]
                 }
             }
         }, { // Secondary yAxis
             title: {
-                text: 'Educational level',
+                text: 'Gun ownership %',
                 style: {
                     color: Highcharts.getOptions().colors[0]
                 }
@@ -88,18 +87,18 @@ ${demo.css}
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
         series: [{
-            name: 'Educational level',
+            name: 'Gun ownership',
             type: 'column',
             yAxis: 1,
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1],
+            data: [3.6,6.7,12.3,12.6,12.8,16.7,18,20.2,21.3,21.3,24.5,25.5,30,31.1,32.4,33.1,33.8,34.7,34.7,34.8,35.1,35.9,38.4,38.6,39.1,39.8,40.3,40.5,41.3,41.7,41.7,42,42.1,42.3,42.9,42.9,43.9,43.9,44.1,44.4,47.7,50.7,51.7,55.3,55.3,55.3,55.4,56.6,57.7,57.8,59.7],
             tooltip: {
-                valueSuffix: ''
+                valueSuffix: '%'
             }
 
         }, {
-            name: 'Homicides',
+            name: 'Homicides (per 100K)',
             type: 'spline',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3],
+            data: [13.9,2.1,4.4,1.8,3.2,4.1,3.5,5.8,5,6.3,5.2,6.2,1.1,5.5,4.3,3,4.5,3.1,5.4,5.6,3.8,4.4,7,2.9,4.7,2.4,5.9,1.9,4.9,1.8,6.5,1.3,2.9,6.9,1.5,5.7,6,1.8,10.8,3,4.5,4,7.1,5.9,1.8,7.4,3.9,3,2.7,4.1,2.4],
             tooltip: {
                 valueSuffix: ''
             }
@@ -114,15 +113,15 @@ function loadChart2() {
             zoomType: 'xy'
         },
         title: {
-            text: 'Educational development vs. crime rates'
+            text: 'Education Index vs. Homicide rates'
         },
         subtitle: {
-            text: 'Source: Heinz  2003'
+            text: 'Source: United Nations'
         },
         xAxis: {
             title: {
                 enabled: true,
-                text: 'Educational development'
+                text: 'Homicide Rates (per 100K)'
             },
             startOnTick: true,
             endOnTick: true,
@@ -130,18 +129,19 @@ function loadChart2() {
         },
         yAxis: {
             title: {
-                text: 'Crime rates'
+                text: 'Education Index'
             }
         },
         legend: {
-            layout: 'vertical',
+			enabled: false
+            /*layout: 'vertical',
             align: 'left',
             verticalAlign: 'top',
             x: 100,
             y: 70,
             floating: true,
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
-            borderWidth: 1
+            borderWidth: 1*/
         },
         plotOptions: {
             scatter: {
@@ -163,67 +163,14 @@ function loadChart2() {
                 },
                 tooltip: {
                     headerFormat: '<b>{series.name}</b><br>',
-                    pointFormat: '{point.x}, {point.y}'
+                    pointFormat: '<b>Homicide rates (per 100k): </b>{point.x}<br> <b>Education Index: </b>{point.y}'
                 }
             }
         },
-        series: [{
-            name: 'Asia',
-            color: 'rgba(223, 83, 83, .5)',
-            data: [[161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], [155.8, 53.6],
-                [170.0, 59.0], [159.1, 47.6], [166.0, 69.8], [176.2, 66.8], [160.2, 75.2],
-                [172.5, 55.2], [170.9, 54.2], [172.9, 62.5], [153.4, 42.0], [160.0, 50.0],
-                [147.2, 49.8], [168.2, 49.2], [175.0, 73.2], [157.0, 47.8], [167.6, 68.8],
-                [159.5, 50.6], [175.0, 82.5], [166.8, 57.2], [176.5, 87.8], [170.2, 72.8],
-                [174.0, 54.5], [173.0, 59.8], [179.9, 67.3], [170.5, 67.8], [160.0, 47.0],
-                [154.4, 46.2], [162.0, 55.0], [176.5, 83.0], [160.0, 54.4], [152.0, 45.8],
-                [162.1, 53.6], [170.0, 73.2], [160.2, 52.1], [161.3, 67.9], [166.4, 56.6],
-                [168.9, 62.3], [163.8, 58.5], [167.6, 54.5], [160.0, 50.2], [161.3, 60.3],
-                [167.6, 58.3], [165.1, 56.2], [160.0, 50.2], [170.0, 72.9], [157.5, 59.8],
-                [167.6, 61.0], [160.7, 69.1], [163.2, 55.9], [152.4, 46.5], [157.5, 54.3],
-                [168.3, 54.8], [180.3, 60.7], [165.5, 60.0], [165.0, 62.0], [164.5, 60.3],
-                [156.0, 52.7], [160.0, 74.3], [163.0, 62.0], [165.7, 73.1], [161.0, 80.0],
-                [162.0, 54.7], [166.0, 53.2], [174.0, 75.7], [172.7, 61.1], [167.6, 55.7],
-                [151.1, 48.7], [164.5, 52.3], [163.5, 50.0], [152.0, 59.3], [169.0, 62.5],
-                [164.0, 55.7], [161.2, 54.8], [155.0, 45.9], [170.0, 70.6], [176.2, 67.2],
-                [170.0, 69.4], [162.5, 58.2], [170.3, 64.8], [164.1, 71.6], [169.5, 52.8],
-                [163.2, 59.8], [154.5, 49.0], [159.8, 50.0], [173.2, 69.2], [170.0, 55.9],
-                [161.4, 63.4], [169.0, 58.2], [166.2, 58.6], [159.4, 45.7], [162.5, 52.2],
-                [159.0, 48.6], [162.8, 57.8], [159.0, 55.6], [179.8, 66.8], [162.9, 59.4],
-                [161.0, 53.6], [151.1, 73.2], [168.2, 53.4], [168.9, 69.0], [173.2, 58.4],
-                [171.8, 56.2], [178.0, 70.6], [164.3, 59.8], [163.0, 72.0], [168.5, 65.2],
-                [166.8, 56.6], [172.7, 105.2], [163.5, 51.8], [169.4, 63.4], [167.8, 59.0]]
+		series:[{name: 'Afghanistan',color:'rgba(223,83,83,.5)',data:[[6.5,0.365333333333333]]},{name: 'Albania',color:'rgba(223,83,83,.5)',data:[[5,0.60851936340332]]},{name: 'Algeria',color:'rgba(223,83,83,.5)',data:[[0.7,0.642588888888889]]},{name: 'Andorra',color:'rgba(223,83,83,.5)',data:[[1.3,0.670286666666667]]},{name: 'Angola',color:'rgba(223,83,83,.5)',data:[[10,0.474212066666667]]},{name: 'Antigua and Barbuda',color:'rgba(223,83,83,.5)',data:[[11.2,0.681141333333333]]},{name: 'Argentina',color:'rgba(223,83,83,.5)',data:[[5.5,0.783355597052985]]},{name: 'Armenia',color:'rgba(223,83,83,.5)',data:[[1.8,0.701366666666667]]},{name: 'Australia',color:'rgba(223,83,83,.5)',data:[[1.1,0.926535520426433]]},{name: 'Austria',color:'rgba(223,83,83,.5)',data:[[0.9,0.794481027409886]]},{name: 'Azerbaijan',color:'rgba(223,83,83,.5)',data:[[2.1,0.699777777777778]]},{name: 'Bahamas',color:'rgba(223,83,83,.5)',data:[[29.8,0.713954675784642]]},{name: 'Bahrain',color:'rgba(223,83,83,.5)',data:[[0.5,0.713966666666667]]},{name: 'Bangladesh',color:'rgba(223,83,83,.5)',data:[[2.7,0.446880444813974]]},{name: 'Barbados',color:'rgba(223,83,83,.5)',data:[[7.4,0.739777777777778]]},{name: 'Belarus',color:'rgba(223,83,83,.5)',data:[[5.1,0.819984164444444]]},{name: 'Belgium',color:'rgba(223,83,83,.5)',data:[[1.6,0.812291688144121]]},{name: 'Belize',color:'rgba(223,83,83,.5)',data:[[44.7,0.688888888888889]]},{name: 'Benin',color:'rgba(223,83,83,.5)',data:[[8.4,0.413555555555556]]},{name: 'Bhutan',color:'rgba(223,83,83,.5)',data:[[1.7,0.421244444444444]]},{name: 'Bolivia (Plurinational State of)',color:'rgba(223,83,83,.5)',data:[[12.1,0.6735]]},{name: 'Bosnia and Herzegovina',color:'rgba(223,83,83,.5)',data:[[1.3,0.655318207777778]]},{name: 'Botswana',color:'rgba(223,83,83,.5)',data:[[18.4,0.619]]},{name: 'Brazil',color:'rgba(223,83,83,.5)',data:[[25.2,0.661305629007649]]},{name: 'Brunei Darussalam',color:'rgba(223,83,83,.5)',data:[[2,0.692111111111111]]},{name: 'Bulgaria',color:'rgba(223,83,83,.5)',data:[[1.9,0.749407204955109]]},{name: 'Burkina Faso',color:'rgba(223,83,83,.5)',data:[[8,0.250033333333333]]},{name: 'Burundi',color:'rgba(223,83,83,.5)',data:[[8,0.370088888888889]]},{name: 'Cambodia',color:'rgba(223,83,83,.5)',data:[[10.3,0.495177777777778]]},{name: 'Cameroon',color:'rgba(223,83,83,.5)',data:[[6.5,0.485788888888889]]},{name: 'Canada',color:'rgba(223,83,83,.5)',data:[[7.6,0.8503]]},{name: 'Cape Verde',color:'rgba(223,83,83,.5)',data:[[1.6,0.483466666666667]]},{name: 'Central African Republic',color:'rgba(223,83,83,.5)',data:[[11.8,0.317866666666667]]},{name: 'Chad',color:'rgba(223,83,83,.5)',data:[[7.3,0.255851922222222]]},{name: 'Chile',color:'rgba(223,83,83,.5)',data:[[3.1,0.745675256517198]]},{name: 'China',color:'rgba(223,83,83,.5)',data:[[1,0.609666666666667]]},{name: 'Colombia',color:'rgba(223,83,83,.5)',data:[[30.8,0.602222410837809]]},{name: 'Comoros',color:'rgba(223,83,83,.5)',data:[[10,0.450419755555556]]},{name: 'Congo',color:'rgba(223,83,83,.5)',data:[[12.5,0.511333333333333]]},{name: 'Congo (Democratic Republic of the)',color:'rgba(223,83,83,.5)',data:[[28.3,0.371777777777778]]},{name: 'Costa Rica',color:'rgba(223,83,83,.5)',data:[[8.5,0.653921604156494]]},{name: 'Cote d Ivoire',color:'rgba(223,83,83,.5)',data:[[13.6,0.389222222222222]]},{name: 'Croatia',color:'rgba(223,83,83,.5)',data:[[1.2,0.770334476894801]]},{name: 'Cuba',color:'rgba(223,83,83,.5)',data:[[4.2,0.742877777777778]]},{name: 'Cyprus',color:'rgba(223,83,83,.5)',data:[[2,0.776198376549616]]},{name: 'Czech Republic',color:'rgba(223,83,83,.5)',data:[[1,0.866222222222222]]},{name: 'Denmark',color:'rgba(223,83,83,.5)',data:[[0.8,0.872826055283973]]},{name: 'Djibouti',color:'rgba(223,83,83,.5)',data:[[10.1,0.305877777777778]]},{name: 'Dominica',color:'rgba(223,83,83,.5)',data:[[21.1,0.607498000736907]]},{name: 'Dominican Republic',color:'rgba(223,83,83,.5)',data:[[22.1,0.590170542399089]]},{name: 'Ecuador',color:'rgba(223,83,83,.5)',data:[[12.4,0.5938375]]},{name: 'Egypt',color:'rgba(223,83,83,.5)',data:[[3.4,0.573444444444444]]},{name: 'El Salvador',color:'rgba(223,83,83,.5)',data:[[41.2,0.553261878755357]]},{name: 'Equatorial Guinea',color:'rgba(223,83,83,.5)',data:[[19.3,0.414911111111111]]},{name: 'Eritrea',color:'rgba(223,83,83,.5)',data:[[7.1,0.227513722222222]]},{name: 'Estonia',color:'rgba(223,83,83,.5)',data:[[5,0.858533333333333]]},{name: 'Ethiopia',color:'rgba(223,83,83,.5)',data:[[12,0.316521973080105]]},{name: 'Fiji',color:'rgba(223,83,83,.5)',data:[[4,0.766517427454398]]},{name: 'Finland',color:'rgba(223,83,83,.5)',data:[[1.6,0.815088888888889]]},{name: 'France',color:'rgba(223,83,83,.5)',data:[[1,0.815549416012234]]},{name: 'Gabon',color:'rgba(223,83,83,.5)',data:[[9.1,0.589333333333333]]},{name: 'Gambia',color:'rgba(223,83,83,.5)',data:[[10.2,0.345611111111111]]},{name: 'Georgia',color:'rgba(223,83,83,.5)',data:[[4.3,0.770333333333333]]},{name: 'Germany',color:'rgba(223,83,83,.5)',data:[[0.8,0.884371952311198]]},{name: 'Ghana',color:'rgba(223,83,83,.5)',data:[[6.1,0.552744444444444]]},{name: 'Greece',color:'rgba(223,83,83,.5)',data:[[1.7,0.79698855082194]]},{name: 'Grenada',color:'rgba(223,83,83,.5)',data:[[13.3,0.723975688888889]]},{name: 'Guatemala',color:'rgba(223,83,83,.5)',data:[[39.9,0.483879889382257]]},{name: 'Guinea',color:'rgba(223,83,83,.5)',data:[[8.9,0.294444733333333]]},{name: 'Guinea-Bissau',color:'rgba(223,83,83,.5)',data:[[8.4,0.325333333333333]]},{name: 'Guyana',color:'rgba(223,83,83,.5)',data:[[17,0.581655555555556]]},{name: 'Haiti',color:'rgba(223,83,83,.5)',data:[[10.2,0.374277777777778]]},{name: 'Honduras',color:'rgba(223,83,83,.5)',data:[[90.4,0.504963148964776]]},{name: 'Hong Kong, China (SAR)',color:'rgba(223,83,83,.5)',data:[[0.4,0.767366666666667]]},{name: 'Hungary',color:'rgba(223,83,83,.5)',data:[[1.3,0.804893768003554]]},{name: 'Iceland',color:'rgba(223,83,83,.5)',data:[[0.3,0.846866666666667]]},{name: 'India',color:'rgba(223,83,83,.5)',data:[[3.5,0.472666666666667]]},{name: 'Indonesia',color:'rgba(223,83,83,.5)',data:[[0.6,0.603136041429308]]},{name: 'Iran (Islamic Republic of)',color:'rgba(223,83,83,.5)',data:[[4.1,0.683455555555555]]},{name: 'Iraq',color:'rgba(223,83,83,.5)',data:[[8,0.466555555555556]]},{name: 'Ireland',color:'rgba(223,83,83,.5)',data:[[1.2,0.887066666666667]]},{name: 'Israel',color:'rgba(223,83,83,.5)',data:[[1.8,0.854267830318874]]},{name: 'Italy',color:'rgba(223,83,83,.5)',data:[[0.9,0.789505799326923]]},{name: 'Jamaica',color:'rgba(223,83,83,.5)',data:[[39.3,0.668355555555556]]},{name: 'Japan',color:'rgba(223,83,83,.5)',data:[[0.3,0.808]]},{name: 'Jordan',color:'rgba(223,83,83,.5)',data:[[2,0.699725098080105]]},{name: 'Kazakhstan',color:'rgba(223,83,83,.5)',data:[[7.8,0.762266666666667]]},{name: 'Kenya',color:'rgba(223,83,83,.5)',data:[[6.4,0.514555555555556]]},{name: 'Kiribati',color:'rgba(223,83,83,.5)',data:[[8.2,0.602070533333333]]},{name: 'Korea (Republic of)',color:'rgba(223,83,83,.5)',data:[[0.9,0.864509635501439]]},{name: 'Kuwait',color:'rgba(223,83,83,.5)',data:[[0.4,0.645787498686049]]},{name: 'Kyrgyzstan',color:'rgba(223,83,83,.5)',data:[[9.1,0.656288888888889]]},{name: 'Lao People s Democratic Republic',color:'rgba(223,83,83,.5)',data:[[5.9,0.435866666666667]]},{name: 'Latvia',color:'rgba(223,83,83,.5)',data:[[4.7,0.813187844143298]]},{name: 'Lebanon',color:'rgba(223,83,83,.5)',data:[[2.2,0.630576123607081]]},{name: 'Lesotho',color:'rgba(223,83,83,.5)',data:[[38,0.504158407415336]]},{name: 'Liberia',color:'rgba(223,83,83,.5)',data:[[3.2,0.367244444444444]]},{name: 'Libya',color:'rgba(223,83,83,.5)',data:[[1.7,0.697888888888889]]},{name: 'Liechtenstein',color:'rgba(223,83,83,.5)',data:[[0,0.761544444444444]]},{name: 'Lithuania',color:'rgba(223,83,83,.5)',data:[[6.7,0.876659891340469]]},
+		{name: 'Luxembourg',color:'rgba(223,83,83,.5)',data:[[0.8,0.762111043987417]]},{name: 'Madagascar',color:'rgba(223,83,83,.5)',data:[[11.1,0.458425611111111]]},{name: 'Malawi',color:'rgba(223,83,83,.5)',data:[[1.8,0.439666666666667]]},{name: 'Malaysia',color:'rgba(223,83,83,.5)',data:[[2.3,0.670544444444444]]},{name: 'Maldives',color:'rgba(223,83,83,.5)',data:[[3.9,0.547543357408026]]},{name: 'Mali',color:'rgba(223,83,83,.5)',data:[[7.5,0.305180943160895]]},{name: 'Malta',color:'rgba(223,83,83,.5)',data:[[2.8,0.732538011338976]]},{name: 'Mauritania',color:'rgba(223,83,83,.5)',data:[[5,0.352277777777778]]},{name: 'Mauritius',color:'rgba(223,83,83,.5)',data:[[2.8,0.718096828460693]]},{name: 'Mexico',color:'rgba(223,83,83,.5)',data:[[21.5,0.63783310784234]]},{name: 'Micronesia (Federated States of)',color:'rgba(223,83,83,.5)',data:[[4.6,0.611084533333333]]},{name: 'Moldova (Republic of)',color:'rgba(223,83,83,.5)',data:[[6.5,0.653444444444444]]},{name: 'Mongolia',color:'rgba(223,83,83,.5)',data:[[9.7,0.693666666666667]]},{name: 'Montenegro',color:'rgba(223,83,83,.5)',data:[[2.7,0.773555555555556]]},{name: 'Morocco',color:'rgba(223,83,83,.5)',data:[[2.2,0.467855555555556]]},{name: 'Mozambique',color:'rgba(223,83,83,.5)',data:[[12.4,0.372055555555556]]},{name: 'Myanmar',color:'rgba(223,83,83,.5)',data:[[15.2,0.370555555555556]]},{name: 'Namibia',color:'rgba(223,83,83,.5)',data:[[17.2,0.520188888888889]]},{name: 'Nepal',color:'rgba(223,83,83,.5)',data:[[2.9,0.452311111111111]]},{name: 'Netherlands',color:'rgba(223,83,83,.5)',data:[[0.9,0.893532297346326]]},{name: 'New Zealand',color:'rgba(223,83,83,.5)',data:[[0.9,0.916766666666667]]},{name: 'Nicaragua',color:'rgba(223,83,83,.5)',data:[[11.3,0.4839]]},{name: 'Niger',color:'rgba(223,83,83,.5)',data:[[4.7,0.197933333333333]]},{name: 'Nigeria',color:'rgba(223,83,83,.5)',data:[[20,0.42486]]},{name: 'Norway',color:'rgba(223,83,83,.5)',data:[[2.2,0.909922222222222]]},{name: 'Oman',color:'rgba(223,83,83,.5)',data:[[1.1,0.603279116605336]]},{name: 'Pakistan',color:'rgba(223,83,83,.5)',data:[[7.7,0.371667342715793]]},{name: 'Palau',color:'rgba(223,83,83,.5)',data:[[3.1,0.786759954769405]]},{name: 'Palestine (State of)',color:'rgba(223,83,83,.5)',data:[[7.4,0.662476603190104]]},{name: 'Panama',color:'rgba(223,83,83,.5)',data:[[17.2,0.657411111111111]]},{name: 'Papua New Guinea',color:'rgba(223,83,83,.5)',data:[[10.4,0.376311111111111]]},{name: 'Paraguay',color:'rgba(223,83,83,.5)',data:[[9.7,0.587322222222222]]},{name: 'Peru',color:'rgba(223,83,83,.5)',data:[[9.6,0.664337878757053]]},{name: 'Philippines',color:'rgba(223,83,83,.5)',data:[[8.8,0.609984055542843]]},{name: 'Poland',color:'rgba(223,83,83,.5)',data:[[1.2,0.824699931674532]]},{name: 'Portugal',color:'rgba(223,83,83,.5)',data:[[1.2,0.727614635891384]]},{name: 'Qatar',color:'rgba(223,83,83,.5)',data:[[1.1,0.685686747233073]]},{name: 'Romania',color:'rgba(223,83,83,.5)',data:[[1.7,0.747894287109377]]},{name: 'Russian Federation',color:'rgba(223,83,83,.5)',data:[[9.2,0.779955555555556]]},{name: 'Rwanda',color:'rgba(223,83,83,.5)',data:[[23.1,0.478166666666667]]},{name: 'Saint Kitts and Nevis',color:'rgba(223,83,83,.5)',data:[[33.6,0.637912633333333]]},{name: 'Saint Lucia',color:'rgba(223,83,83,.5)',data:[[21.6,0.631431388888889]]},{name: 'Saint Vincent and the Grenadines',color:'rgba(223,83,83,.5)',data:[[25.6,0.656834011111111]]},{name: 'Samoa',color:'rgba(223,83,83,.5)',data:[[3.6,0.70150820809378]]},{name: 'Sao Tome and Principe',color:'rgba(223,83,83,.5)',data:[[3.3,0.469165788888889]]},{name: 'Saudi Arabia',color:'rgba(223,83,83,.5)',data:[[0.8,0.723174097188314]]},{name: 'Senegal',color:'rgba(223,83,83,.5)',data:[[2.8,0.367811111111111]]},{name: 'Serbia',color:'rgba(223,83,83,.5)',data:[[1.2,0.695444444444444]]},{name: 'Seychelles',color:'rgba(223,83,83,.5)',data:[[9.5,0.635928888888889]]},{name: 'Sierra Leone',color:'rgba(223,83,83,.5)',data:[[1.9,0.3045]]},{name: 'Singapore',color:'rgba(223,83,83,.5)',data:[[0.2,0.767777777777778]]},{name: 'Slovakia',color:'rgba(223,83,83,.5)',data:[[1.4,0.8021]]},{name: 'Slovenia',color:'rgba(223,83,83,.5)',data:[[0.7,0.863083330790203]]},{name: 'Solomon Islands',color:'rgba(223,83,83,.5)',data:[[4.3,0.405498788888889]]},{name: 'South Africa',color:'rgba(223,83,83,.5)',data:[[31,0.695447163865831]]},{name: 'Spain',color:'rgba(223,83,83,.5)',data:[[0.8,0.79439697265625]]},{name: 'Sri Lanka',color:'rgba(223,83,83,.5)',data:[[3.4,0.737777777777778]]},{name: 'Sudan',color:'rgba(223,83,83,.5)',data:[[11.2,0.305955555555556]]},{name: 'Suriname',color:'rgba(223,83,83,.5)',data:[[6.1,0.588380289077759]]},{name: 'Swaziland',color:'rgba(223,83,83,.5)',data:[[33.8,0.551288888888889]]},{name: 'Sweden',color:'rgba(223,83,83,.5)',data:[[0.7,0.83013401108026]]},{name: 'Switzerland',color:'rgba(223,83,83,.5)',data:[[0.6,0.844089208854229]]},{name: 'Syrian Arab Republic',color:'rgba(223,83,83,.5)',data:[[2.2,0.553191582361857]]},{name: 'Tajikistan',color:'rgba(223,83,83,.5)',data:[[1.6,0.639444444444444]]},{name: 'Tanzania (United Republic of)',color:'rgba(223,83,83,.5)',data:[[12.7,0.425888888888889]]},{name: 'Thailand',color:'rgba(223,83,83,.5)',data:[[5,0.607965283923679]]},{name: 'The former Yugoslav Republic of Macedonia',color:'rgba(223,83,83,.5)',data:[[1.4,0.641897777777778]]},{name: 'Timor-Leste',color:'rgba(223,83,83,.5)',data:[[3.6,0.472406666666667]]},{name: 'Togo',color:'rgba(223,83,83,.5)',data:[[10.3,0.514422222222222]]},{name: 'Tonga',color:'rgba(223,83,83,.5)',data:[[1,0.720333333333333]]},{name: 'Trinidad and Tobago',color:'rgba(223,83,83,.5)',data:[[28.3,0.700320688883463]]},{name: 'Tunisia',color:'rgba(223,83,83,.5)',data:[[2.2,0.621455555555556]]},{name: 'Turkey',color:'rgba(223,83,83,.5)',data:[[2.6,0.652023696899414]]},{name: 'Turkmenistan',color:'rgba(223,83,83,.5)',data:[[12.8,0.678712888888889]]},{name: 'Uganda',color:'rgba(223,83,83,.5)',data:[[10.7,0.478643670654833]]},{name: 'Ukraine',color:'rgba(223,83,83,.5)',data:[[4.3,0.795511111111111]]},{name: 'United Arab Emirates',color:'rgba(223,83,83,.5)',data:[[0.7,0.673214954067177]]},{name: 'United Kingdom',color:'rgba(223,83,83,.5)',data:[[1,0.860260145060222]]},{name: 'United States',color:'rgba(223,83,83,.5)',data:[[4.7,0.889759207028485]]},{name: 'Uruguay',color:'rgba(223,83,83,.5)',data:[[7.9,0.712262429131402]]},{name: 'Uzbekistan',color:'rgba(223,83,83,.5)',data:[[3.7,0.651111111111111]]},{name: 'Vanuatu',color:'rgba(223,83,83,.5)',data:[[2.9,0.595511111111111]]},{name: 'Venezuela (Bolivarian Republic of)',color:'rgba(223,83,83,.5)',data:[[53.7,0.682482617202558]]},{name: 'Vietnam',color:'rgba(223,83,83,.5)',data:[[3.3,0.513488888888889]]},{name: 'Yemen',color:'rgba(223,83,83,.5)',data:[[4.8,0.339222222222222]]},{name: 'Zambia',color:'rgba(223,83,83,.5)',data:[[10.7,0.591333333333333]]},{name: 'Zimbabwe',color:'rgba(223,83,83,.5)',data:[[10.6,0.499933333333333]]}]
 
-        }, {
-            name: 'Europe',
-            color: 'rgba(119, 152, 191, .5)',
-            data: [[174.0, 65.6], [175.3, 71.8], [193.5, 80.7], [186.5, 72.6], [187.2, 78.8],
-                [181.5, 74.8], [184.0, 86.4], [184.5, 78.4], [175.0, 62.0], [184.0, 81.6],
-                [180.0, 76.6], [177.8, 83.6], [192.0, 90.0], [176.0, 74.6], [174.0, 71.0],
-                [184.0, 79.6], [192.7, 93.8], [171.5, 70.0], [173.0, 72.4], [176.0, 85.9],
-                [176.0, 78.8], [180.5, 77.8], [172.7, 66.2], [176.0, 86.4], [173.5, 81.8],
-                [178.0, 89.6], [180.3, 82.8], [180.3, 76.4], [164.5, 63.2], [173.0, 60.9],
-                [183.5, 74.8], [175.5, 70.0], [188.0, 72.4], [189.2, 84.1], [172.8, 69.1],
-                [170.0, 59.5], [182.0, 67.2], [170.0, 61.3], [177.8, 68.6], [184.2, 80.1],
-                [186.7, 87.8], [171.4, 84.7], [172.7, 73.4], [175.3, 72.1], [180.3, 82.6],
-                [182.9, 88.7], [188.0, 84.1], [177.2, 94.1], [172.1, 74.9], [167.0, 59.1],
-                [169.5, 75.6], [174.0, 86.2], [172.7, 75.3], [182.2, 87.1], [164.1, 55.2],
-                [163.0, 57.0], [171.5, 61.4], [184.2, 76.8], [174.0, 86.8], [174.0, 72.2],
-                [177.0, 71.6], [186.0, 84.8], [167.0, 68.2], [171.8, 66.1], [182.0, 72.0],
-                [167.0, 64.6], [177.8, 74.8], [164.5, 70.0], [192.0, 101.6], [175.5, 63.2],
-                [171.2, 79.1], [181.6, 78.9], [167.4, 67.7], [181.1, 66.0], [177.0, 68.2]]
-        }, {
-            name: 'North and central America',
-            color: 'rgba(52, 152, 191, .5)',
-            data: [[174.0, 65.6], [175.3, 71.8], [193.5, 80.7], [186.5, 72.6], [187.2, 78.8],
-                [181.5, 74.8], [184.0, 86.4], [184.5, 78.4], [175.0, 62.0], [184.0, 81.6],
-                [180.0, 42.6], [177.8, 83.6], [192.0, 90.0], [176.0, 74.6], [174.0, 71.0]]
-        }, {
-            name: 'Australasia',
-            color: 'rgba(155, 186, 15, .5)',
-            data: [[174.0, 65.6], [175.3, 71.8], [193.5, 80.7], [186.5, 72.6], [187.2, 78.8],
-                [181.5, 74.8], [184.0, 86.4], [184.5, 78.4], [175.0, 62.0], [184.0, 81.6]]
-        }]
+
     });
 }
 		</script>
@@ -339,7 +286,7 @@ function loadChart2() {
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Story Content</h3>
+              <h3>Safety</h3>
             </div>
 
             <div class="title_right">
@@ -362,11 +309,11 @@ function loadChart2() {
                 <div class="x_content">
 
                   <div class="col-md-8 col-lg-8 col-sm-7">
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Crime_statistics">Crime rates</a> are one of the most complex indexes on a society. Crime rates on each country or city are influenced by the most diverse factors, from social disparity to employment rates. To shed light on some of these 
+                    <p><a target="popup" onclick="window.open('https://en.wikipedia.org/wiki/Crime_statistics','statistics','width=600,height=400')" href="https://en.wikipedia.org/wiki/Crime_statistics">Crime rates</a> are one of the most complex indexes on a society. Crime rates on each country or city are influenced by the most diverse factors, from social disparity to employment rates. To shed light on some of these 
 					impacting factors, we have two charts for crime data. On the first one, gun ownership is compared against the homidice rates on some states of US, it is important to note that the number of owned guns in this chart just 
-					take into account properly registered guns, excluding guns used illegally. The secon chart, makes clear the relation between crime rates and <a target="_blank" href="https://en.wikipedia.org/wiki/Education_Index">educational level</a> on several countries in the world.</p>
+					take into account properly registered guns, excluding guns used illegally. The secon chart, makes clear the relation between crime rates and 
+					<a target="popup" onclick="window.open('https://en.wikipedia.org/wiki/Education_Index','statistics','width=600,height=400')" href="https://en.wikipedia.org/wiki/Education_Index">educational level</a> on several countries in the world.</p>				
 					
-					<div id="container" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
                   </div>
                   <div class="col-md-4 col-lg-4 col-sm-5">
                     <h1>Charts available</h1>
@@ -374,19 +321,17 @@ function loadChart2() {
 					<h4><a href="javascript:loadChart2();">Educational development vs. crime rates</a></h4>
                   </div>
 
-                  <div class="clearfix"></div>			  
+                  <div class="clearfix"></div>		
+
+				  <div id="container" style="height: 600px; min-width: 310px; max-width: 90%; margin: 0 auto"></div>
 				  
 
                   <div class="col-md-12">
                     <h4>Labels and badges</h4>
-                    <span class="label label-default">Default</span>
-                    <span class="label label-primary">Primary</span>
-                    <span class="label label-success">Success</span>
-                    <span class="label label-info">Info</span>
-                    <span class="label label-warning">Warning</span>
-                    <span class="label label-danger">Danger</span>
-
-                    <span class="badge badge-success">42</span>
+                    <span class="label label-default">Guns</span>
+                    <span class="label label-info">Education</span>
+                    <span class="label label-warning">Safety</span>
+                    <span class="label label-danger">Crime</span>
                   </div>
 
                 </div>
