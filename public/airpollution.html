@@ -26,93 +26,79 @@
   <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-		<style type="text/css">
+<style type="text/css">
 		a{ text-decoration: underline; }
-${demo.css}
 		</style>
 		<script type="text/javascript">
 $(function () {
     $('#container').highcharts({
+
         chart: {
+            type: 'bubble',
+            plotBorderWidth: 1,
             zoomType: 'xy'
         },
-        title: {
-            text: 'Total forest cover versus global temperature change'
-        },
-        subtitle: {
-            text: 'Source: Nasa & FAO'
-        },
-        xAxis: [{
-            categories: ['1990', '1991', '1992', '1993', '1994', '1995',
-                '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015'],
-            crosshair: true
-        }],
-        yAxis: [{ // Primary yAxis
-            labels: {
-                format: '{value}°C',
-                style: {
-                    color: Highcharts.getOptions().colors[1]
-                }
-            },
-            title: {
-                text: 'Temperature',
-                style: {
-                    color: Highcharts.getOptions().colors[1]
-                }
-            }
-        }, { // Secondary yAxis
-			min: 3900000,
-			max: 4200000,
-			floor: 3950000,
-			ceiling: 4200000,
-            title: {
-                text: 'Forest cover loss',
-                style: {
-                    color: Highcharts.getOptions().colors[0]
-                }
-            },
-            labels: {
-                format: '{value} ha 1000',
-                style: {
-                    color: Highcharts.getOptions().colors[0]
-                }
-            },
-            opposite: true
-        }],
-        tooltip: {
-            shared: true
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            x: 120,
-            verticalAlign: 'top',
-            y: 100,
-            floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-        },
-		plotOptions: {
-            series: {
-                connectNulls: true
-            }
-        },
-        series: [{
-            name: 'Forest cover',
-            type: 'spline',
-            yAxis: 1,
-            data: [4128269.24,null,null,null,null,null,null,null,null,null,4053582,null,null,null,null,4032742.47,null,null,null,null,4015672.76,null,null,null,null,3999133.39],
-            tooltip: {
-                valueSuffix: ' ha 1000'
-            }
 
-        }, {
-            name: 'Global temperature anomaly',
-            type: 'spline',
-            data: [0.44,0.42,0.23,0.24,0.32,0.46,0.34,0.47,0.63,0.42,0.42,0.54,0.63,0.62,0.54,0.69,0.63,0.66,0.53,0.64,0.72,0.6,0.63,0.65,0.74,0.87],
-            tooltip: {
-                valueSuffix: '°C'
+        legend: {
+            enabled: false
+        },
+
+        title: {
+            text: 'Air pollution versus Gross State Product'
+        },
+
+        subtitle: {
+            text: 'Source: United Health Foundation, US Census & US Department of Commerce'
+        },
+
+        xAxis: {
+            gridLineWidth: 1,
+            title: {
+                text: 'Gross state product'
+            },
+            labels: {
+                format: '${value} Millions'
             }
+        },
+
+        yAxis: {
+            startOnTick: false,
+            endOnTick: false,
+            title: {
+                text: 'Air pollution'
+            },
+            labels: {
+                format: '{value} Mg of toxic particles per cubic meter'
+            },
+            maxPadding: 0.2
+        },
+
+        tooltip: {
+            useHTML: true,
+            headerFormat: '<table>',
+            pointFormat: '<tr><th colspan="2"><b>{point.statename}</b></th></tr>' +
+                '<tr><th>GSP:</th><td>${point.x} Millions</td></tr>' +
+                '<tr><th>Air pollution:</th><td>{point.y}Mg of toxic part.</td></tr>' +
+                '<tr><th>Population:</th><td>{point.z}</td></tr>',
+            footerFormat: '</table>',
+            followPointer: true
+        },
+
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+
+        series: [{
+            data: [
+                {x: 207303, y: 9.5, z: 4858979, name: 'AL', statename: 'Alabama' },{x: 54256, y: 6, z: 738432, name: 'AK', statename: 'Alaska' },{x: 295445, y: 9.7, z: 6828065, name: 'AZ', statename: 'Arizona' },{x: 122492, y: 9.7, z: 2978204, name: 'AR', statename: 'Arkansas' },{x: 2424033, y: 12.5, z: 39144818, name: 'CA', statename: 'California' },{x: 316535, y: 7, z: 5456574, name: 'CO', statename: 'Colorado' },{x: 259661, y: 8.8, z: 3590886, name: 'CT', statename: 'Connecticut' },{x: 66150, y: 9.7, z: 945934, name: 'DE', statename: 'Delaware' },{x: 121798, y: 11.1, z: 672228, name: 'DC', statename: 'District of Columbia' },{x: 883735, y: 7.2, z: 20271272, name: 'FL', statename: 'Florida' },{x: 496180, y: 9.8, z: 10214860, name: 'GA', statename: 'Georgia' },{x: 79595, y: 7.6, z: 1431603, name: 'HI', statename: 'Hawaii' },{x: 65202, y: 11.7, z: 1654930, name: 'ID', statename: 'Idaho' },{x: 764817, y: 11.1, z: 12859995, name: 'IL', statename: 'Illinois' },{x: 326538, y: 11.3, z: 6619680, name: 'IN', statename: 'Indiana' },{x: 168089, y: 9.3, z: 3123899, name: 'IA', statename: 'Iowa' },{x: 146219, y: 8.6, z: 2911641, name: 'KS', statename: 'Kansas' },{x: 192874, y: 10.1, z: 4425092, name: 'KY', statename: 'Kentucky' },{x: 252965, y: 8.6, z: 4670724, name: 'LA', statename: 'Louisiana' },{x: 55137, y: 7.4, z: 1329328, name: 'ME', statename: 'Maine' },{x: 360969, y: 9.6, z: 6006401, name: 'MD', statename: 'Maryland' },{x: 473606, y: 7.2, z: 6794422, name: 'MA', statename: 'Massachusetts' },{x: 462252, y: 8.8, z: 9922576, name: 'MI', statename: 'Michigan' },{x: 330782, y: 8, z: 5489594, name: 'MN', statename: 'Minnesota' },{x: 106880, y: 8.9, z: 2992333, name: 'MS', statename: 'Mississippi' },{x: 287207, y: 9.7, z: 6083672, name: 'MO', statename: 'Missouri' },{x: 45799, y: 5.7, z: 1032949, name: 'MT', statename: 'Montana' },{x: 112208, y: 7.8, z: 1896190, name: 'NE', statename: 'Nebraska' },{x: 140608, y: 10, z: 2890845, name: 'NV', statename: 'Nevada' },{x: 71632, y: 7.2, z: 1330608, name: 'NH', statename: 'New Hampshire' },{x: 573947, y: 8.8, z: 8958013, name: 'NJ', statename: 'New Jersey' },{x: 90810, y: 6.6, z: 2085109, name: 'NM', statename: 'New Mexico' },{x: 1444406, y: 8, z: 19795791, name: 'NY', statename: 'New York' },{x: 503745, y: 8.7, z: 10042802, name: 'NC', statename: 'North Carolina' },{x: 53686, y: 5.2, z: 756927, name: 'ND', statename: 'North Dakota' },{x: 592899, y: 10.6, z: 11613423, name: 'OH', statename: 'Ohio' },{x: 181089, y: 9.5, z: 3911338, name: 'OK', statename: 'Oklahoma' },{x: 225661, y: 6.7, z: 4028977, name: 'OR', statename: 'Oregon' },{x: 677582, y: 11.4, z: 12802503, name: 'PA', statename: 'Pennsylvania' },{x: 56323, y: 7.8, z: 1056298, name: 'RI', statename: 'Rhode Island' },{x: 196887, y: 9, z: 4896146, name: 'SC', statename: 'South Carolina' },{x: 45415, y: 6.3, z: 858469, name: 'SD', statename: 'South Dakota' },{x: 307125, y: 9.1, z: 6600299, name: 'TN', statename: 'Tennessee' },{x: 1648007, y: 9.9, z: 27469114, name: 'TX', statename: 'Texas' },{x: 146697, y: 8.9, z: 2995919, name: 'UT', statename: 'Utah' },{x: 29750, y: 6.2, z: 626042, name: 'VT', statename: 'Vermont' },{x: 476919, y: 8.3, z: 8382993, name: 'VA', statename: 'Virginia' },{x: 446096, y: 8, z: 7170351, name: 'WA', statename: 'Washington' },{x: 71123, y: 9.4, z: 1844128, name: 'WV', statename: 'West Virginia' },{x: 296971, y: 9.1, z: 5771337, name: 'WI', statename: 'Wisconsin' },{x: 40170, y: 5, z: 586107, name: 'WY', statename: 'Wyoming' }
+            ]
         }]
+
     });
 });
 		</script>
@@ -228,7 +214,7 @@ $(function () {
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Climate</h3>
+              <h3>Environment</h3>
             </div>
 
             <div class="title_right">
@@ -245,18 +231,18 @@ $(function () {
             <div class="col-md-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>The impacts of deforestation on world climate</h2>
+                  <h2>Are economic development and air quality inversely related?</h2>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 
                   <div class="col-md-8 col-lg-8 col-sm-7">
-                    <p>Trees play a major role in controlling <a target="popup" onclick="window.open('http://www.livescience.com/topics/global-warming/','global warming','width=600,height=400')" href="http://www.livescience.com/topics/global-warming/">global warming</a>. The trees utilize the green house gases, restoring the balance in the atmosphere. With constant deforestation the ratio of green house gases in the atmosphere has increased, adding to our global warming woes. Following you can see the relation between the <a target="popup" onclick="window.open('http://www.theguardian.com/environment/interactive/2007/dec/13/forests','forest cover','width=600,height=400')" href="http://www.theguardian.com/environment/interactive/2007/dec/13/forests">total forest cover</a> and the global temperature change on the planet.</p>
+                    <p>Industries are a great source of both pollution and wealth for states. They help generate employments and are a big source of income for governments, however, they are also responsible for tons of waste products such as chemical fluids and toxic fumes that are let out into the environment, leading to low quality of air and other health complications. Power plants also play a big role in industrial pollution and together with the heavy industries they account for nearly 80% of all <a target="popup" onclick="window.open('https://www3.epa.gov/climatechange/kids/basics/today/greenhouse-gases.html','greenhouse','width=600,height=400')" href="https://www3.epa.gov/climatechange/kids/basics/today/greenhouse-gases.html">greenhouse gas</a> emissions. Some states are known to be industrial states and have a number of big and robust industries. The following chart relates the <a target="popup" onclick="window.open('https://en.wikipedia.org/wiki/Gross_state_product','gsp','width=600,height=400')" href="https://en.wikipedia.org/wiki/Gross_state_product">gross state product</a> of US states and the corresponding air pollution rates for them.</p>
 					
                   </div>
                   <div class="col-md-4 col-lg-4 col-sm-5">
                     <h1>Charts available</h1>
-                    <h4><a href="javascript:loadChart1();">Forest cover vs. global temperature change</a></h4>
+                    <h4><a href="javascript:loadChart1();">Air pollution vs. GSP</a></h4>
                   </div>
 
                   <div class="clearfix"></div>		
@@ -266,9 +252,9 @@ $(function () {
 
                   <div class="col-md-12">
                     <h4>Tags</h4>
-                    <span class="label label-success">Forest</span>
-                    <span class="label label-warning">Weather</span>
-                    <span class="label label-danger">Global Warming</span>
+                    <span class="label label-info">Environment</span>
+					<span class="label label-success">Economy</span>
+                    <span class="label label-warning">Census</span>
                   </div>
 
                 </div>
