@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/* CSS Document */
+
+div.mapContainer {
+	width:880px;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+div.title {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:24px;
+	font-weight:bold;
+}
+
+div.subtitle {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bold;
+}
+
+td#header {
+	
+}
+
+div.headerText {
+	font-family:"Times New Roman", Times, serif;;
+	font-size:14px;
+	padding-top:20px;
+	padding-bottom:5px;
+}
+
+td#footer {
+	
+}
+
+div.footerText {
+	font-family:"Times New Roman", Times, serif;;
+	font-size:12px;
+	color:#999999;
+	width:880px;
+	padding-top:20px;
+}
+
+a.footerLink {
+	font-family:"Times New Roman", Times, serif;;
+	font-size:12px;
+	color:#999999;
+}
+
+div.componentOutline {
+	width:880px;
+	height:660px;
+	border:thin #999 solid;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Project Specific styles */
+#cities { position:absolute; left:0px; top:0px; display:none; }
+#citiesToggle { position:absolute; left:50px; top:580px; cursor:pointer; }
+
+#infoButton { position:absolute; left:114px; top:640px; cursor:pointer; z-index:100; }
+#infoTextContainer { position:absolute; left:152px; top:570px; height:100px; }
+#infoText { position:absolute; left:0px; bottom:0px; border:thin #666 solid; width:648px; display:none; font-size:11px; background-color:#FFF; padding:2px; }
+
+#timelineDateText {
+	display:none;
+	position:absolute;
+	left:25px;
+	top:575px;
+	
+	font-size:20px;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+
+.IMA-Components-Slider-Horizontal-Timeline-Bar {
+	width:670px!important;
+}
+
+.IMA-Components-Slider-Horizontal-Timeline-Rewind {
+	left:690px!important;
+}

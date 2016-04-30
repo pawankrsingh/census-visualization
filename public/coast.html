@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Slider - Snap to increments</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>  
+  <style>
+      #slider label {
+        position: absolute;
+        width: 20px;
+        margin-left: -10px;
+        text-align: center;
+        font-size: 10%;
+        margin-top: 20px;
+    }
+
+    #slider {
+        width: 10%;
+        margin: 2%;
+    }
+  </style>
+
+
+  <script>
+  $(function() {
+    $( "#slider" ).slider({
+      value:1,
+      min: 1,
+      max: 23,
+      step: 1,
+      slide: function( event, ui ) {
+        //$( "#amount" ).val( "$" + ui.value );
+        var img_name ="coastgraph"+ui.value ;
+        setImageVisible(img_name,true)
+      }
+  }).each(function() {
+      var opt = $(this).data().uiSlider.options;
+      var vals = opt.max - opt.min;
+      for (var i = 0; i <= vals; i++) {
+            var el = $('<label>'+(10*i+1790)+'</label>').css('left',(i/vals*100)+'%');
+            $( "#slider" ).append(el);
+
+        }
+
+    });
+
+    $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+  });
+
+
+  function setImageVisible(id, visible) {
+    $(".coastgraph").hide();
+    var filename = "#"+id;
+    $(filename).show();
+}
+
+  </script>
+</head>
+<body>
+
+<p>
+    <img class="coastgraph" id="coastgraph1" src="images/coastline/1.png" ></img>
+    <img class="coastgraph" id="coastgraph2" src="images/coastline/2.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph3" src="images/coastline/3.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph4" src="images/coastline/4.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph5" src="images/coastline/5.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph6" src="images/coastline/6.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph7" src="images/coastline/7.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph8" src="images/coastline/8.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph9" src="images/coastline/9.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph10" src="images/coastline/10.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph11" src="images/coastline/11.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph12" src="images/coastline/12.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph13" src="images/coastline/13.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph14" src="images/coastline/14.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph15" src="images/coastline/15.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph16" src="images/coastline/16.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph17" src="images/coastline/17.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph18" src="images/coastline/18.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph19" src="images/coastline/19.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph20" src="images/coastline/20.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph21" src="images/coastline/21.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph22" src="images/coastline/22.png" style="display:none;"></img>
+    <img class="coastgraph" id="coastgraph23" src="images/coastline/23.png" style="display:none;"></img>
+      <div id="slider" style="width: 33%"></div>
+</p>
+
+
+
+
+</body>
+</html>

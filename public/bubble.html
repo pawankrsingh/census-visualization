@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+  <link href="./css/dragit.css" rel="stylesheet"/>
+  <script src="./js/d3.v3.js"></script>
+  <script src="./js/dragit.js"></script>
+</head>
+<title>Wealth & Health of Nations</title>
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-left:40px;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+html,body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+text {
+  cursor: default;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+#chart {
+  height: 506px;
+}
+
+text {
+  font-size: 10px;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.label {
+  fill: #777;
+}
+
+.year.label {
+  font: 500 196px "Helvetica Neue";
+  fill: #ddd;
+}
+
+.country.label  {
+  font: 500 96px "Helvetica Neue";
+  fill: #ddd;
+}
+
+.year.label.active {
+  fill: #aaa;
+}
+
+circle.pointTrajectory {
+   pointer-events: none;
+   stroke: lightgray;
+   fill: black;
+   opacity: 0;
+}
+
+path.lineTrajectory {
+  stroke-width: 2;
+  stroke-opacity: .5;
+  stroke: black;
+  fill: none;
+  pointer-events: none;
+}
+
+.selected {
+  stroke-width: 4;
+}
+
+</style>
+  <!-- Bootstrap core CSS -->
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+
+  <!-- Custom styling plus plugins -->
+  <link href="css/custom.css" rel="stylesheet">
+  <link href="css/icheck/flat/green.css" rel="stylesheet">
+
+
+  <script src="js/jquery.min.js"></script>
+ 
+
+</head>
+
+
+<body class="nav-md">
+
+    <div class="container body">
+
+
+      <div class="main_container">
+
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-bar-chart"></i> <span>CensusViz</span></a>
+            </div>
+            <div class="clearfix"></div>
+
+            <!-- /menu prile quick info -->
+
+            <br />
+
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+            <div class="menu_section">
+              <h3>Census Data Visualization</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="index.html">Summary</a>
+                    </li>
+                    <li><a href="">All Stories</a>
+                    </li>
+                    <li><a href="domains.html">Domains</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li><a><i class="fa fa-table"></i> Tabular Data <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="tables.html">Tables</a>
+                    </li>
+                    <li><a href="tables_dynamic.html">Table Dynamic</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-bar-chart-o"></i> About Libraries <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="chartjs.html">Chart JS</a>
+                    </li>
+                    <li><a href="d3.html">D3</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+
+        <div class="nav_menu">
+          <nav class="" role="navigation">
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+          </nav>
+        </div>
+
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3>Health and Wealth of Nations</h3>
+            </div>
+
+            <div class="title_right">
+              <div class="pull-right">
+                <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+                <input style="padding: 5px 16px;" type="text" placeholder="Search..." class="autocomplete-input input tooltip-button ui-autocomplete-input" data-placement="bottom" title="" name="" data-original-title="Type 'jav' to see the available tags..." autocomplete="off">
+                <i class="glyph-icon icon-search"></i>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Per Capita Income, Life Expectancy and Population of Nations</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                  <div class="col-md-12">
+                    <p>The main reason for this non-linear relationship is because people consume both needs and wants.  People consume needs in order to survive.  Once a person’s needs are satisfied, they could then spend the rest of their money on non-necessities.  If everyone’s needs are satisfied, then any increase in GDP per capita would barely affect life expectancy. 
+  
+                    GDP per capita isn't the only thing that affects life expectancy.  Government intervention can also affect it.  A nation could be rich, but if its government ignores the plight of the poor, it could lower the life expectancy.  
+
+                    Another reason for the wide variation in the life expectancies for countries with low GDP per capita would be due to the level of non-market economic activity.  For example, if there is a lot of subsistence farming, people could be working and have enough food to eat, but wouldn’t be contributing much to the nation’s GDP because they wouldn’t be buying the food they eat, or selling the food they grow i.e. no exchange of money.
+                    <br/>
+                    <br/>
+                    <b>Hans Rosling TED Talk</b> : <a href="https://www.youtube.com/watch?v=hVimVzgtD6w">https://www.youtube.com/watch?v=hVimVzgtD6w</a>
+                    </p>				
+					
+                  </div>
+                 <br/>
+                  <h5>Graphical Representation</h5>
+
+                <i>Use your mouse to click and drag countries (represented as circles) to explore +200 years of life expectancy and income indicators.</i></p>
+
+                <div id="chart" style="margin:0px"></div>
+                <span id="min-time">1800</span>     <span style="float: right" id="max-time">2008</span>
+                <input type="range" name="points" min="0" max="208" step="1" value="0" id="slider-time" style="float: right">
+              
+                
+                  <div class="col-md-12">
+                    <h4>Tags</h4>
+                    <span class="label label-default">Per Capita Income</span>
+                    <span class="label label-info">Life Expectancy</span>
+                    <span class="label label-warning">HDI</span>
+                    <span class="label label-danger">Health</span>
+                    <span class="label label-danger">Wealth</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- footer content -->
+        <footer>
+          <div class="copyright-info">
+            <p class="pull-right">Team Visualizers
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+
+      </div>
+      <!-- /page content -->
+    </div>
+
+  </div>
+
+  <div id="custom_notifications" class="custom-notifications dsp_none">
+    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+    </ul>
+    <div class="clearfix"></div>
+    <div id="notif-group" class="tabbed_notifications"></div>
+  </div>
+
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- bootstrap progress js -->
+  <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+  <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+  <!-- icheck -->
+  <script src="js/icheck/icheck.min.js"></script>
+
+  <script src="js/custom.js"></script>
+  <!-- pace -->
+  <script src="js/pace/pace.min.js"></script>
+  <script>
+
+// Various accessors that specify the four dimensions of data to visualize.
+function x(d) { return d.income; }
+function y(d) { return d.lifeExpectancy; }
+function radius(d) { return d.population; }
+function color(d) { return d.region; }
+function key(d) { return d.name; }
+
+// Chart dimensions.
+var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
+    width = 960 - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// Various scales. These domains make assumptions of data, naturally.
+var xScale = d3.scale.log().domain([300, 1e5]).range([0, width]),
+    yScale = d3.scale.linear().domain([10, 85]).range([height, 0]),
+    radiusScale = d3.scale.sqrt().domain([0, 5e8]).range([0, 40]),
+    colorScale = d3.scale.category10();
+
+// The x & y axes.
+var xAxis = d3.svg.axis().orient("bottom").scale(xScale).ticks(12, d3.format(",d")),
+    yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+// Create the SVG container and set the origin.
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .attr("class", "gRoot")
+
+// Add the x-axis.
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+// Add the y-axis.
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+// Add an x-axis label.
+svg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", height - 6)
+    .text("income per capita, inflation-adjusted (dollars)");
+
+// Add a y-axis label.
+svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", 6)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .text("life expectancy (years)");
+
+// Add the year label; the value is set on transition.
+var label = svg.append("text")
+    .attr("class", "year label")
+    .attr("text-anchor", "end")
+    .attr("y", height - 24)
+    .attr("x", width)
+    .text(1800);
+
+// Add the country label; the value is set on transition.
+var countrylabel = svg.append("text")
+    .attr("class", "country label")
+    .attr("text-anchor", "start")
+    .attr("y", 80)
+    .attr("x", 20)
+    .text(" ");
+
+var first_time = true;
+
+// Load the data.
+d3.json("./data/nations.json", function(nations) {
+
+  // A bisector since many nation's data is sparsely-defined.
+  var bisect = d3.bisector(function(d) { return d[0]; });
+
+  // Add a dot per nation. Initialize the data at 1800, and set the colors.
+  var dot = svg.append("g")
+      .attr("class", "dots")
+    .selectAll(".dot")
+      .data(interpolateData(1800))
+    .enter().append("circle")
+      .attr("class", "dot")
+      .style("fill", function(d) { return colorScale(color(d)); })
+      .call(position)
+      .on("mousedow", function(d, i) {
+
+      })
+      .on("mouseup", function(d, i) {
+        dot.classed("selected", false);
+        d3.select(this).classed("selected", !d3.select(this).classed("selected"));
+        dragit.trajectory.display(d, i, "selected");
+
+        //TODO: test if has been dragged
+        // Look at the state machine history and find a drag event in it?
+
+      })
+      .on("mouseenter", function(d, i) {
+        clear_demo();
+        if(dragit.statemachine.current_state == "idle") {
+          dragit.trajectory.display(d, i)
+          dragit.utils.animateTrajectory(dragit.trajectory.display(d, i), dragit.time.current, 1000)
+          countrylabel.text(d.name);
+          dot.style("opacity", .4)
+          d3.select(this).style("opacity", 1)
+          d3.selectAll(".selected").style("opacity", 1)
+        }
+      })
+      .on("mouseleave", function(d, i) {
+
+        if(dragit.statemachine.current_state == "idle") {
+          countrylabel.text("");
+          dot.style("opacity", 1);
+        }
+  
+        dragit.trajectory.remove(d, i);
+      })
+      .call(dragit.object.activate)
+
+  // Add a title.
+  dot.append("title")
+      .text(function(d) { return d.name; });
+
+  // Start a transition that interpolates the data based on year.
+  svg.transition()
+      .duration(30000)
+      .ease("linear")
+
+  // Positions the dots based on data.
+  function position(dot) {
+    dot.attr("cx", function(d) { return xScale(x(d)); })
+       .attr("cy", function(d) { return yScale(y(d)); })
+       .attr("r", function(d) { return radiusScale(radius(d)); });
+  }
+
+  // Defines a sort order so that the smallest dots are drawn on top.
+  function order(a, b) {
+    return radius(b) - radius(a);
+  }
+
+  // Updates the display to show the specified year.
+  function displayYear(year) {
+    dot.data(interpolateData(year+dragit.time.min), key).call(position).sort(order);
+    label.text(dragit.time.min + Math.round(year));
+  }
+
+  // Interpolates the dataset for the given (fractional) year.
+  function interpolateData(year) {
+    return nations.map(function(d) {
+      return {
+        name: d.name,
+        region: d.region,
+        income: interpolateValues(d.income, year),
+        population: interpolateValues(d.population, year),
+        lifeExpectancy: interpolateValues(d.lifeExpectancy, year)
+      };
+    });
+  }
+
+  // Finds (and possibly interpolates) the value for the specified year.
+  function interpolateValues(values, year) {
+    var i = bisect.left(values, year, 0, values.length - 1),
+        a = values[i];
+    if (i > 0) {
+      var b = values[i - 1],
+          t = (year - a[0]) / (b[0] - a[0]);
+      return a[1] * (1 - t) + b[1] * t;
+    }
+    return a[1];
+  }
+  
+  init();
+
+  function update(v, duration) {
+    dragit.time.current = v || dragit.time.current;
+    displayYear(dragit.time.current)
+    d3.select("#slider-time").property("value", dragit.time.current);
+  }
+
+  function init() {
+
+    dragit.init(".gRoot");
+
+    dragit.time = {min:1800, max:2009, step:1, current:1800}
+    dragit.data = d3.range(nations.length).map(function() { return Array(); })
+
+    for(var yy = 1800; yy<2009; yy++) {
+
+      interpolateData(yy).filter(function(d, i) { 
+        dragit.data[i][yy-dragit.time.min] = [xScale(x(d)), yScale(y(d))];
+
+      })
+    }
+
+    dragit.evt.register("update", update);
+
+    //d3.select("#slider-time").property("value", dragit.time.current);
+
+    d3.select("#slider-time")
+      .on("mousemove", function() { 
+        update(parseInt(this.value), 500);
+        clear_demo();
+      })
+
+    var end_effect = function() {
+      countrylabel.text("");
+      dot.style("opacity", 1)
+    }
+
+    dragit.evt.register("dragend", end_effect)
+  }
+
+function clear_demo() {
+  if(first_time) {
+     svg.transition().duration(0);
+    first_time = false;
+    window.clearInterval(demo_interval);
+    countrylabel.text("");
+    dragit.trajectory.removeAll();
+    d3.selectAll(".dot").style("opacity", 1)
+  }
+}
+
+
+
+var demo_interval = null;
+
+
+
+});
+
+</script>
+
+</body>
+
+</html>

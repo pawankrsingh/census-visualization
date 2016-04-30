@@ -1,0 +1,134 @@
+<html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<script>
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Earnings and Compensation'
+        },
+        subtitle: {
+            text: 'Source: Worldbank.com'
+        },
+        xAxis: [{
+            categories: ['2006','2007','2008','2009','2010','2011','2012','2013','2014','2015'],
+            crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: '{value}hours',
+                style: {
+                    color: Highcharts.getOptions().colors[2]
+                }
+            },
+            title: {
+                text: 'Average Weekly Hours of All Employees',
+                style: {
+                    color: Highcharts.getOptions().colors[2]
+                }
+            },
+            opposite: true
+
+        }, { // Secondary yAxis
+            gridLineWidth: 0,
+            title: {
+                text: 'Compensation of employees',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            labels: {
+                format: '{value} Billions',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            }
+
+        }, { // Tertiary yAxis
+            gridLineWidth: 0,
+            title: {
+                text: 'Average Hourly Earnings of All Employees',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            labels: {
+                format: '{value} $',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 80,
+            verticalAlign: 'top',
+            y: 55,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+        },
+        series: [{
+            name: 'Compensation of employees, Billions of Dollars',
+            type: 'spline',
+            yAxis: 1,
+            data: [7453,7832.1,8077.9,7762.4,7801.7,8209.7,8504,8696.7,9103.7,9481.9],
+            tooltip: {
+                valueSuffix: ' mm'
+            }
+
+        }, {
+            name: 'Average Weekly Hours of All Employees: ',
+            type: 'spline',
+            yAxis: 2,
+            data: [34.2,34.3,34.4,34,34,34.2,34.5,34.4,34.4,34.6],
+            marker: {
+                enabled: false
+            },
+            dashStyle: 'shortdot',
+            tooltip: {
+                valueSuffix: ' mb'
+            }
+
+        }, {
+            name: 'Average Hourly Earnings of All Employees:  Dollars per Hour',
+            type: 'spline',
+            data: [20.04,20.6,21.2,21.96,22.42,22.85,23.25,23.75,24.23,24.76],
+            tooltip: {
+                valueSuffix: ' °C'
+            }
+        }]
+    });
+});
+
+
+
+
+</script>
+
+
+
+
+<body>
+
+
+  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+</body>
+
+
+
+</html>
