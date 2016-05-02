@@ -1,18 +1,23 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Highcharts Example</title>
+<!DOCTYPE html>
+<html lang="en">
 
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<style type="text/css">
+<head>
+ 
+ 
+<title>Mortality Rate and its Causes</title> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/treemap.js"></script>
+     <style type="text/css">
 #container {
     min-width: 300px;
     max-width: 600px;
     margin: 0 auto;
 }
-		</style>
-		<script type="text/javascript">
+    </style>
+    <script type="text/javascript">
 $(function () {
     var data = {
             'South-East Asia': {
@@ -970,20 +975,237 @@ $(function () {
         }
     });
 });
-		</script>
-	</head>
-	<body>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/heatmap.js"></script>
-<script src="https://code.highcharts.com/modules/treemap.js"></script>
-<div id="container"></div>
-<p> Mortality vs. healthcare expenditure
-    Treemap for countries
-    Substitute innermost graph with ajax-loaded line graph with bar(line-ajax IN HIGHCHARTS)
-    line 1: infant mortality
-    line 2: maternal mortality
-    X axis: time
-    Y axis (bar): heathcare expenditure
-</p>
-	</body>
+    </script>
+  <!-- Bootstrap core CSS -->
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+<link href="css/animate.min.css" rel="stylesheet">
+<!-- Custom styling plus plugins -->
+<link href="css/custom.css" rel="stylesheet">
+<link href="css/icheck/flat/green.css" rel="stylesheet">
+
+ 
+
+</head>
+
+
+<body class="nav-md">
+
+    <div class="container body">
+
+
+      <div class="main_container">
+
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-bar-chart"></i> <span>CensusViz</span></a>
+            </div>
+            <div class="clearfix"></div>
+            <!-- /menu prile quick info -->
+
+            <br />
+
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+            <div class="menu_section">
+              <h3>Census Data Visualization</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="index.html">Summary</a>
+                    </li>
+                    <li><a href="">All Stories</a>
+                    </li>
+                    <li><a href="domains.html">Domains</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li><a><i class="fa fa-table"></i> Tabular Data <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="tables.html">Tables</a>
+                    </li>
+                    <li><a href="tables_dynamic.html">Table Dynamic</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-bar-chart-o"></i> About Libraries <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="chartjs.html">Chart JS</a>
+                    </li>
+                    <li><a href="d3.html">D3</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+
+        <div class="nav_menu">
+          <nav class="" role="navigation">
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+          </nav>
+        </div>
+
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3>Income Distribution among Population</h3>
+            </div>
+
+            <div class="title_right">
+              <div class="pull-right">
+                <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+                <input style="padding: 5px 16px;" type="text" placeholder="Search..." class="autocomplete-input input tooltip-button ui-autocomplete-input" data-placement="bottom" title="" name="" data-original-title="Type 'jav' to see the available tags..." autocomplete="off">
+                <i class="glyph-icon icon-search"></i>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Comparison of Gross Domestic Product and Per Capita</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                  <div class="col-md-12">
+                    <p>It may happen to all of us eventually, but fewer of us are dying right now than at any time since mortality data was collected. In a dramatic report the latest figures also show that more people are dying of cancer than of circulatory diseases, for the first time since the data was recorded.
+
+The latest figures from the Office for National Statistics show there were 484,367 deaths registered in England and Wales in 2011, a fall of 1.8% compared with 2010. The age-standardised mortality rates (which takes account of aging population) in 2011 were the lowest ever recorded for England and Wales, at 6,236 deaths per million population for males and 4,458 deaths per million population for female.
+
+
+The stories you need to read, in one handy email
+ Read more
+Cancer death rates have fallen by 14% for men and 10% for women in the previous decade.
+
+And between 2001 and 2011, the death rates for circulatory diseases fell by 44% to 1,803 deaths per million population for males and 1,110 deaths per million population for females.
+
+We may worry about murders or swine flu, but the big killers of heart disease and cancer are much more significant in terms of public health. What is also striking is how constant many of these numbers of deaths are - why do around 17,000 people die each year in accidents, for instance? Why do around 200 people accidentally drown every year?
+
+Besides the graphic below, we've summarised two of the datasets below: major causes of death and deaths from external causes - ie, accidents or assaults. If you want to find out how many people died after being bitten by dogs or falling off ladders, this is the place to look.
+
+And, whatever we may worry about, this is one of the safest times to be alive, ever - as the chart below shows.
+
+
+The data itself comes from death certificates and records the primary cause of death - which is why the influenza numbers are lower than other estimates. If you get flu, which then lowers your resistance enough for pneumonia to kill you, for instance, pneumonia would be the main cause of death recorded.
+
+The data also includes regional figures too:
+<ul>
+<li>The north east had a 12% higher mortality rate than the rest of the country using the standardised mortality ratio (SMR) calculation</li>
+<li>Levels were lowest in London and the south east, where they were 7% below the nation</li>
+<li>Manchester was the local authority with the highest SMR, at 32% above the national, while South Cambridgeshire's was 26% below</li>
+<li>In Wales, Blaenau Gwent had the highest SMR, 29% above the national level, while Monmouthshire had the lowest, at 10% below.</li>
+<li>The West Midlands had the highest regional infant mortality rate, with 6.0 deaths per thousand live births, and the south east had the lowest, with 3.5 deaths per thousand live births</li>
+<li>Wales had an infant mortality rate of 3.9 deaths per thousand live births</li>
+ </ul>                   </p>        
+          
+                  </div>
+                  <div id="container"></div>
+                    <p> Mortality vs. healthcare expenditure
+                        Treemap for countries
+                        Substitute innermost graph with ajax-loaded line graph with bar(line-ajax IN HIGHCHARTS)
+                        line 1: infant mortality
+                        line 2: maternal mortality
+                        X axis: time
+                        Y axis (bar): heathcare expenditure
+                    </p>
+
+                  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                  <br/>
+                
+                  <div class="col-md-12">
+                    <h4>Tags</h4>
+                    <span class="label label-default">Per Capita Income</span>
+                    <span class="label label-info">Life Expectancy</span>
+                    <span class="label label-warning">HDI</span>
+                    <span class="label label-danger">Health</span>
+                    <span class="label label-danger">Wealth</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- footer content -->
+        <footer>
+          <div class="copyright-info">
+            <p class="pull-right">Team Visualizers
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+
+      </div>
+      <!-- /page content -->
+    </div>
+
+  </div>
+
+  <div id="custom_notifications" class="custom-notifications dsp_none">
+    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+    </ul>
+    <div class="clearfix"></div>
+    <div id="notif-group" class="tabbed_notifications"></div>
+  </div>
+
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- bootstrap progress js -->
+  <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+  <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+  <!-- icheck -->
+  <script src="js/icheck/icheck.min.js"></script>
+
+  <script src="js/custom.js"></script>
+  <!-- pace -->
+  <script src="js/pace/pace.min.js"></script>
+  
+
+</body>
+
 </html>
